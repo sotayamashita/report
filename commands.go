@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/BurntSushi/toml"
 	"github.com/codegangsta/cli"
+	"github.com/mozillazg/request"
 )
 
 var Commands = []cli.Command{
@@ -14,7 +16,7 @@ var Commands = []cli.Command{
 }
 
 var commandToggle = cli.Command{
-	Name:  "toggle",
+	Name:  "toggl",
 	Usage: "",
 	Description: `
 `,
@@ -38,7 +40,7 @@ type Config struct {
 }
 
 type Toggl struct {
-	ApiToken string `toml:"api_token"`
+	APIToken string `toml:"api_token"`
 }
 
 func doToggle(c *cli.Context) {
@@ -48,5 +50,17 @@ func doToggle(c *cli.Context) {
 		panic(err)
 	}
 
-	fmt.Printf("%s\n", config.Toggl.ApiToken)
+	// debug
+	fmt.Printf("%s\n", config.Toggl.APIToken)
+
+	// Get toggl api
+	client := new(http.Client)
+	req := request.NewRequest(client)
+	req.BasicAuth = request.BasicAuth{config.Toggl.APIToken, "api_token"}
+	resp, err := req.Get("https://toggl.com/reports/api/v2")
+	j, err := resp.Json()
+	defer resp.Body.Close()
+
+	fmt.Println(j)
+
 }
