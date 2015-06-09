@@ -29,7 +29,7 @@ please create `config.tml`:
 api_token = "<your api token>"
 ```
 
-## Install
+## Installation
 
 To install, use `go get`:
 
@@ -47,6 +47,6 @@ $ go get -d github.com/Sota Yamashita/report
 1. Run `gofmt -s`
 1. Create a new Pull Request
 
-## Copyright
+## License
 
 MIT © [Sota Yamashita](https://github.com/Sota Yamashita)
