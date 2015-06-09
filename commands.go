@@ -34,10 +34,10 @@ func assert(err error) {
 }
 
 type Config struct {
-	Toggle Toggle
+	Toggl Toggl
 }
 
-type Toggle struct {
+type Toggl struct {
 	ApiToken string `toml:"api_token"`
 }
 
@@ -48,5 +48,5 @@ func doToggle(c *cli.Context) {
 		panic(err)
 	}
 
-	fmt.Printf("%s\n", config.Toggle.ApiToken)
+	fmt.Printf("%s\n", config.Toggl.ApiToken)
 }
