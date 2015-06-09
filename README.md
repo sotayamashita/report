@@ -6,7 +6,8 @@ Generate report for daily in Golang
 
 ## Features
 
-* [ ] [Toggl](https://www.toggl.com/)
+* [ ] [Toggl](https://www.toggl.com/) wip
+* [ ] git commit log
 
 ## Requirements
 
