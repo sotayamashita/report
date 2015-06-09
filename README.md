@@ -2,7 +2,26 @@
 
 ## Description
 
+Generate report for daily with Golang
+
+## Feature
+
+* [ ] [Toggl](https://www.toggl.com/)
+
 ## Usage
+
+```bash
+$ report toggl
+```
+
+## Configuration
+
+please create `config.tml`:
+
+```
+[toggl]
+api_token = "<your api token>"
+```
 
 ## Install
 
@@ -22,6 +41,6 @@ $ go get -d github.com/Sota Yamashita/report
 1. Run `gofmt -s`
 1. Create a new Pull Request
 
-## Author
+## Copyright
 
-[Sota Yamashita](https://github.com/Sota Yamashita)
+MIT © [Sota Yamashita](https://github.com/Sota Yamashita)
