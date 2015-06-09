@@ -2,11 +2,17 @@
 
 ## Description
 
-Generate report for daily with Golang
+Generate report for daily in Golang
 
-## Feature
+## Features
 
 * [ ] [Toggl](https://www.toggl.com/)
+
+## Requirements
+
+* [request](https://github.com/mozillazg/request) - Go HTTP Requests for Humans™
+* [cli](https://github.com/codegangsta/cli) - A small package for building command line apps in Go
+* [cli-init](https://github.com/tcnksm/cli-init) - The easy way to start building Golang command-line application.
 
 ## Usage
 
