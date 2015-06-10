@@ -2,11 +2,11 @@
 
 ## Description
 
-Generate report for daily in Golang
+Generate report for daily in Golang. I'm not all knowing so if you find anything you think I got wrong, needs more details or have any suggestion or questions to make this guide better, please create any [issues](https://github.com/sotayamashita/report/issues)
 
 ## Features
 
-* [ ] [Toggl](https://www.toggl.com/) wip
+* [ ] [Toggl](https://www.toggl.com/)
 * [ ] git commit log
 
 ## Requirements
