@@ -28,6 +28,7 @@ please create `config.tml`:
 ```
 [toggl]
 api_token = "<your api token>"
+workspace_id = "<your workspace_id>"
 ```
 
 ## Installation
