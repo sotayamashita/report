@@ -49,12 +49,15 @@ type TogglConfig struct {
 }
 
 func doToggle(c *cli.Context) {
+	// TODO: standarize or make it like global
+	// TODO: methodize like import
 	var config Config
 	_, err := toml.DecodeFile("config.tml", &config)
 	if err != nil {
 		panic(err)
 	}
 
+	// TODO: methodize like fetch
 	client := new(http.Client)
 	req := request.NewRequest(client)
 	req.BasicAuth = request.BasicAuth{config.Toggl.APIToken, "api_token"}
@@ -66,20 +69,22 @@ func doToggle(c *cli.Context) {
 	j, err := resp.Json()
 	defer resp.Body.Close() // Do not forget close body
 
+	// TODO: methodize processror
 	// tasks
 	tasks, _ := j.Get("data").Array()
 
 	// Init new tasks
+	// TODO: init new with key
 	var newTasks = make(map[string]interface{})
 	newTasks["description"] = ""
 	newTasks["clinet"] = ""
 	newTasks["project"] = ""
 	newTasks["duration"] = ""
-	fmt.Println(newTasks)
 
 	// print each task
 	for n := range tasks {
-		fmt.Println(tasks[n])
+		castedTask, _ := tasks[n].(map[string]interface{})
+		fmt.Println(castedTask["description"])
 	}
 
 }
@@ -87,7 +92,7 @@ func doToggle(c *cli.Context) {
 // Toggl base url
 const BaseURL = "https://toggl.com/reports/api/v2/details"
 
-// TODO: refer to http://ruby-doc.org/stdlib-2.2.2/libdoc/uri/rdoc/URI/HTTP.html#M009497
+// TODO: methodize like URL
 func urlBuilder() *url.URL {
 	var config Config
 	_, err := toml.DecodeFile("config.tml", &config)
