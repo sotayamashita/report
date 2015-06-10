@@ -14,6 +14,7 @@ Generate report for daily in Golang. I'm not all knowing so if you find anything
 * [request](https://github.com/mozillazg/request) - Go HTTP Requests for Humans™
 * [cli](https://github.com/codegangsta/cli) - A small package for building command line apps in Go
 * [cli-init](https://github.com/tcnksm/cli-init) - The easy way to start building Golang command-line application.
+* [go-simplejson](https://github.com/bitly/go-simplejson) - a Go package to interact with arbitrary JSON
 
 ## Usage
 
