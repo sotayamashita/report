@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 
 	"github.com/BurntSushi/toml"
@@ -11,6 +12,7 @@ import (
 	"github.com/mozillazg/request"
 )
 
+// Commands ...
 var Commands = []cli.Command{
 	commandToggle,
 }
@@ -35,12 +37,15 @@ func assert(err error) {
 	}
 }
 
+// Config ...
 type Config struct {
-	Toggl Toggl
+	Toggl TogglConfig
 }
 
-type Toggl struct {
-	APIToken string `toml:"api_token"`
+// TogglConfig ...
+type TogglConfig struct {
+	APIToken    string `toml:"api_token"`
+	WorkspaceID string `toml:"workspace_id"`
 }
 
 func doToggle(c *cli.Context) {
@@ -50,17 +55,55 @@ func doToggle(c *cli.Context) {
 		panic(err)
 	}
 
-	// debug
-	fmt.Printf("%s\n", config.Toggl.APIToken)
-
-	// Get toggl api
 	client := new(http.Client)
 	req := request.NewRequest(client)
 	req.BasicAuth = request.BasicAuth{config.Toggl.APIToken, "api_token"}
-	resp, err := req.Get("https://toggl.com/reports/api/v2")
+	resp, err := req.Get(urlBuilder())
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 	j, err := resp.Json()
-	defer resp.Body.Close()
+	defer resp.Body.Close() // Do not forget close body
 
-	fmt.Println(j)
+	// tasks
+	tasks, _ := j.Get("data").Array()
 
+	// Init new tasks
+	var newTasks = make(map[string]interface{})
+	newTasks["description"] = ""
+	newTasks["clinet"] = ""
+	newTasks["project"] = ""
+	newTasks["duration"] = ""
+	fmt.Println(newTasks)
+
+	// print each task
+	for n := range tasks {
+		fmt.Println(tasks[n])
+	}
+
+}
+
+// Toggl base url
+const BaseURL = "https://toggl.com/reports/api/v2/details"
+
+// TODO: refer to http://ruby-doc.org/stdlib-2.2.2/libdoc/uri/rdoc/URI/HTTP.html#M009497
+func urlBuilder() *url.URL {
+	var config Config
+	_, err := toml.DecodeFile("config.tml", &config)
+	if err != nil {
+		panic(err)
+	}
+
+	u, err := url.Parse(BaseURL)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	q := u.Query()
+	q.Add("user_agent", "report")
+	q.Add("workspace_id", config.Toggl.WorkspaceID)
+	u.RawQuery = q.Encode()
+
+	return u
 }
