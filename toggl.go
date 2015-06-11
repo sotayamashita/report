@@ -56,15 +56,15 @@ func Toggl() {
 	newTasks["project"] = ""
 	newTasks["duration"] = ""
 
-	// print each task
-	// for n := range tasks {
-	// 	castedTask, _ := tasks[n].(map[string]interface{})
-	// 	// fmt.Println(time.Duration(castedTask["duration"]) * time.Minute)
-	// }
-
-	d := tasks[0].(map[string]interface{})["dur"]
-
-	fmt.Println(duration(d))
+	for n := range tasks {
+		castedTask, _ := tasks[n].(map[string]interface{})
+		fmt.Println(castedTask["description"])
+		fmt.Println(castedTask["tags"])
+		fmt.Println(duration(castedTask["dur"]))
+		fmt.Println(castedTask["client"])
+		fmt.Println(castedTask["project"])
+		fmt.Println()
+	}
 }
 
 func duration(duration interface{}) time.Duration {
