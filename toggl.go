@@ -1,10 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"net/url"
+	"time"
 
 	"github.com/BurntSushi/toml"
 	"github.com/mozillazg/request"
@@ -55,10 +57,23 @@ func Toggl() {
 	newTasks["duration"] = ""
 
 	// print each task
-	for n := range tasks {
-		castedTask, _ := tasks[n].(map[string]interface{})
-		fmt.Println(castedTask["description"])
-	}
+	// for n := range tasks {
+	// 	castedTask, _ := tasks[n].(map[string]interface{})
+	// 	// fmt.Println(time.Duration(castedTask["duration"]) * time.Minute)
+	// }
+
+	d := tasks[0].(map[string]interface{})["dur"]
+
+	fmt.Println(duration(d))
+}
+
+func duration(duration interface{}) time.Duration {
+	// Assert duration interface{} to json.Number
+	var o, _ = duration.(json.Number)
+	// Assert originalDuration json.Number to int64
+	var i, _ = o.Int64()
+	// Return time.Duration
+	return time.Duration(i) * time.Millisecond
 }
 
 // TODO: methodize like URL
