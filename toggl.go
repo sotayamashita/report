@@ -65,6 +65,7 @@ func Toggl() {
 		fmt.Println(castedTask["project"])
 		fmt.Println()
 	}
+
 }
 
 func duration(duration interface{}) time.Duration {
@@ -74,6 +75,11 @@ func duration(duration interface{}) time.Duration {
 	var i, _ = o.Int64()
 	// Return time.Duration
 	return time.Duration(i) * time.Millisecond
+}
+
+// TODO: write comment
+func yesterday() time.Time {
+	return time.Now().AddDate(0, 0, -1)
 }
 
 // TODO: methodize like URL
@@ -92,6 +98,7 @@ func urlBuilder() *url.URL {
 	q := u.Query()
 	q.Add("user_agent", "report")
 	q.Add("workspace_id", config.Toggl.WorkspaceID)
+	q.Add("since", yesterday().Format("2006-01-02"))
 	u.RawQuery = q.Encode()
 
 	return u
