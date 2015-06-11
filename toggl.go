@@ -21,9 +21,9 @@ type TogglConfig struct {
 
 // Toggl ...It is main function
 func Toggl() {
+	var config Config
 
 	// 1. read config.toml
-	var config Config
 	_, err := toml.DecodeFile("config.tml", &config)
 	if err != nil {
 		panic(err)
@@ -35,7 +35,7 @@ func Toggl() {
 	req.BasicAuth = request.BasicAuth{config.Toggl.APIToken, "api_token"}
 	resp, err := req.Get(urlBuilder())
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(err.Error())
 		return
 	}
 	j, err := resp.Json()
