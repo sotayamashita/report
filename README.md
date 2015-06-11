@@ -44,12 +44,12 @@ $ go build report.go
 ## Contribution
 
 1. Fork ([https://github.com/Sota Yamashita/report/fork](https://github.com/Sota Yamashita/report/fork))
-1. Create a feature branch
-1. Commit your changes
-1. Rebase your local changes against the master branch
-1. Run test suite with the `go test ./...` command and confirm that it passes
-1. Run `gofmt -s`
-1. Create a new Pull Request
+2. Create a feature branch
+3. Commit your changes
+4. Rebase your local changes against the master branch
+5. Run test suite with the `go test ./...` command and confirm that it passes
+6. Run `gofmt -s`
+7. Create a new Pull Request
 
 ## License
 
