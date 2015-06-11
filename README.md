@@ -20,8 +20,20 @@ Generate report for daily in Golang. I'm not all knowing so if you find anything
 
 ## Usage
 
+### Toggl
+
+Run command:
+
 ```bash
 $ report toggl
+```
+
+Result:
+
+```
+Create CLI tool with Golang OSS [golang, oss] 42m6s 8:43 PM - 9:16 AM
+Translate docs OSS [electron, oss] 42m6s 8:43 PM - 9:16 AM
+...
 ```
 
 ## Configuration
