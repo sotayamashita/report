@@ -38,7 +38,8 @@ To install, use `go get`:
 
 ```bash
 $ go get -d github.com/Sota Yamashita/report
-$ go build report.go
+$ go build
+$ go install
 ```
 
 ## Contribution
