@@ -13,11 +13,10 @@ var Commands = []cli.Command{
 }
 
 var commandToggle = cli.Command{
-	Name:  "toggl",
-	Usage: "",
-	Description: `
-`,
-	Action: doToggle,
+	Name:        "toggl",
+	Usage:       "Shows your activity with Toggl",
+	Description: `Shows your activity with Toggl on today`,
+	Action:      doToggle,
 }
 
 func debug(v ...interface{}) {
