@@ -17,6 +17,7 @@ Generate report for daily in Golang. I'm not all knowing so if you find anything
 * [cli](https://github.com/codegangsta/cli) - A small package for building command line apps in Go
 * [cli-init](https://github.com/tcnksm/cli-init) - The easy way to start building Golang command-line application.
 * [go-simplejson](https://github.com/bitly/go-simplejson) - a Go package to interact with arbitrary JSON
+* [go-colorful](https://github.com/lucasb-eyer/go-colorful) - A library for playing with colors in go (golang).
 
 ## Usage
 
