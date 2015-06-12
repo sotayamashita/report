@@ -51,7 +51,7 @@ workspace_id = "<your workspace_id>"
 To install, use `go get`:
 
 ```bash
-$ go get -d github.com/Sota Yamashita/report
+$ go get -d github.com/sotayamashita/report
 $ go build
 $ go install
 ```
