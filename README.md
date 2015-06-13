@@ -8,7 +8,7 @@ Generate report for daily in Golang. I'm not all knowing so if you find anything
 
 ## Features
 
-* [ ] [Toggl](https://www.toggl.com/)
+* [x] [Toggl](https://www.toggl.com/)
 * [ ] git commit log
 
 ## Requirements
