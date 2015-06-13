@@ -81,6 +81,7 @@ To install, use `go get`:
 
 ```bash
 $ go get -d github.com/sotayamashita/report
+$ godep go install
 $ go build
 $ go install
 ```
