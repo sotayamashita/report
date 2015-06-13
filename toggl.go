@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"path/filepath"
 	"time"
 
 	"github.com/BurntSushi/toml"
@@ -13,8 +14,10 @@ import (
 )
 
 // Toggl base url
-const BaseURL = "https://toggl.com/reports/api/v2/details"
-const togglTimeForm = "2006-01-02T15:04:05-07:00"
+const (
+	BaseURL       = "https://toggl.com/reports/api/v2/details"
+	togglTimeForm = "2006-01-02T15:04:05-07:00"
+)
 
 // TogglConfig ...
 type TogglConfig struct {
@@ -26,8 +29,11 @@ type TogglConfig struct {
 func Toggl() {
 	var config Config
 
+	reportDir, _ := filepath.Abs(".")
+	configFile := reportDir + "/config.tml"
+
 	// 1. read config.toml
-	_, err := toml.DecodeFile("config.tml", &config)
+	_, err := toml.DecodeFile(configFile, &config)
 	if err != nil {
 		panic(err)
 	}
