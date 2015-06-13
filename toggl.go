@@ -85,11 +85,6 @@ func meridiemTime(date interface{}) string {
 	return t.Format("3:4 PM")
 }
 
-// TODO: write comment
-func yesterday() time.Time {
-	return time.Now().AddDate(0, 0, -1)
-}
-
 // TODO: methodize like URL
 func urlBuilder() *url.URL {
 	var config Config
