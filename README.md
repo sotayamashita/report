@@ -39,14 +39,48 @@ Translate docs OSS [electron, oss] 42m6s 8:43 PM - 9:16 AM
 ...
 ```
 
+### Git
+
+Run command:
+
+```bash
+$ report git
+```
+
+Result:
+
+```bash
+git@github.com:sotayamashita/report.git
+Sat Jun 13 21:40:30 2015 +0900 b954dfa Rename git\'s feature name
+Sat Jun 13 21:36:47 2015 +0900 326e239 Add new features
+Sat Jun 13 21:34:50 2015 +0900 c58ef8d Finish toggl feature
+Sat Jun 13 21:33:42 2015 +0900 c080ae4 Rename const togglTimeForm
+```
+
 ## Configuration
 
 please create `config.tml`:
+
+### Toggl
+
+In config file, `api_token` and `workspace_id` is taken from [toggl.com](https://www.toggl.com/) and [Toggl API Documentation](https://github.com/toggl/toggl_api_docs#api-token) is more detail.
 
 ```
 [toggl]
 api_token = "<your api token>"
 workspace_id = "<your workspace_id>"
+```
+
+### Git
+
+In config file, each item should be a git repository (or any of the parent directories). It means that each directory has `.git/`.
+
+```
+[git]
+repositories = [
+  "~$GOPATH/src/github.com/sotayamashita/report",
+  "~$GOPATH/src/github.com/sotayamashita/coffee"
+]
 ```
 
 ## Installation
