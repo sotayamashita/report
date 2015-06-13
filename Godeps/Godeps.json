@@ -1,0 +1,34 @@
+{
+	"ImportPath": "github.com/sotayamashita/report",
+	"GoVersion": "go1.4.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/BurntSushi/toml",
+			"Comment": "v0.1.0-21-g056c9bc",
+			"Rev": "056c9bc7be7190eaa7715723883caffa5f8fa3e4"
+		},
+		{
+			"ImportPath": "github.com/bitly/go-simplejson",
+			"Comment": "v0.4.3-30-g18db6e6",
+			"Rev": "18db6e68d8fd9cbf2e8ebe4c81a78b96fd9bf05a"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/cli",
+			"Comment": "1.2.0-115-g616b730",
+			"Rev": "616b730509ef3f11384d159cc52545639103ea86"
+		},
+		{
+			"ImportPath": "github.com/mozillazg/request",
+			"Comment": "v0.3.0-1-g1941d54",
+			"Rev": "1941d545fe95c5916f7f4b96498a3daa93f44a07"
+		},
+		{
+			"ImportPath": "golang.org/x/net/proxy",
+			"Rev": "dfe268fd2bb5c793f4c083803609fce9806c6f80"
+		},
+		{
+			"ImportPath": "golang.org/x/net/publicsuffix",
+			"Rev": "dfe268fd2bb5c793f4c083803609fce9806c6f80"
+		}
+	]
+}
