@@ -14,6 +14,7 @@ import (
 
 // Toggl base url
 const BaseURL = "https://toggl.com/reports/api/v2/details"
+const togglForm = "2006-01-02T15:04:05-07:00"
 
 // TogglConfig ...
 type TogglConfig struct {
@@ -41,31 +42,33 @@ func Toggl() {
 		return
 	}
 	j, err := resp.Json()
-	defer resp.Body.Close() // Do not forget close body
+	defer resp.Body.Close()
 
 	// 3. process data and return
 	// TODO: methodize processror
 	// tasks
 	tasks, _ := j.Get("data").Array()
-
-	// Init new tasks
-	// TODO: init new with key
-	var newTasks = make(map[string]interface{})
-	newTasks["description"] = ""
-	newTasks["clinet"] = ""
-	newTasks["project"] = ""
-	newTasks["duration"] = ""
-
 	for n := range tasks {
-		castedTask, _ := tasks[n].(map[string]interface{})
-		fmt.Println(castedTask["description"])
-		fmt.Println(castedTask["tags"])
-		fmt.Println(duration(castedTask["dur"]))
-		fmt.Println(castedTask["client"])
-		fmt.Println(castedTask["project"])
-		fmt.Println()
+		show(tasks[n])
 	}
 
+}
+
+func show(task interface{}) {
+	// Assert task intarface{} to map[string] interface{}
+	var t = task.(map[string]interface{})
+
+	var tasks []interface{}
+	tasks = append(tasks, t["description"])
+	tasks = append(tasks, t["tags"])
+	tasks = append(tasks, t["project"])
+	tasks = append(tasks, t["client"])
+	tasks = append(tasks, duration(t["dur"]))
+	tasks = append(tasks, meridiemTime(t["start"]))
+	tasks = append(tasks, "-")
+	tasks = append(tasks, meridiemTime(t["end"]))
+
+	fmt.Println(tasks)
 }
 
 func duration(duration interface{}) time.Duration {
@@ -75,6 +78,11 @@ func duration(duration interface{}) time.Duration {
 	var i, _ = o.Int64()
 	// Return time.Duration
 	return time.Duration(i) * time.Millisecond
+}
+
+func meridiemTime(date interface{}) string {
+	t, _ := time.Parse(togglForm, date.(string))
+	return t.Format("3:4 PM")
 }
 
 // TODO: write comment
@@ -98,7 +106,7 @@ func urlBuilder() *url.URL {
 	q := u.Query()
 	q.Add("user_agent", "report")
 	q.Add("workspace_id", config.Toggl.WorkspaceID)
-	q.Add("since", yesterday().Format("2006-01-02"))
+	q.Add("since", time.Now().Format("2006-01-02"))
 	u.RawQuery = q.Encode()
 
 	return u
