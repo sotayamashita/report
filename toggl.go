@@ -14,7 +14,7 @@ import (
 
 // Toggl base url
 const BaseURL = "https://toggl.com/reports/api/v2/details"
-const togglForm = "2006-01-02T15:04:05-07:00"
+const togglTimeForm = "2006-01-02T15:04:05-07:00"
 
 // TogglConfig ...
 type TogglConfig struct {
@@ -81,7 +81,7 @@ func duration(duration interface{}) time.Duration {
 }
 
 func meridiemTime(date interface{}) string {
-	t, _ := time.Parse(togglForm, date.(string))
+	t, _ := time.Parse(togglTimeForm, date.(string))
 	return t.Format("3:4 PM")
 }
 
