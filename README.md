@@ -9,6 +9,8 @@ Generate report for daily in Golang. I'm not all knowing so if you find anything
 ## Features
 
 * [x] [Toggl](https://www.toggl.com/)
+ * [ ] Sort by project
+ * [ ] Sort by client
 * [ ] git commit log
 
 ## Requirements
