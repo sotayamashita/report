@@ -29,8 +29,7 @@ type TogglConfig struct {
 func Toggl() {
 	var config Config
 
-	reportDir, _ := filepath.Abs(".")
-	configFile := reportDir + "/config.tml"
+	configFile, _ := filepath.Abs("./config.tml")
 
 	// 1. read config.toml
 	_, err := toml.DecodeFile(configFile, &config)
