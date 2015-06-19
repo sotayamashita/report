@@ -6,11 +6,10 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-	"path/filepath"
 	"time"
 
-	"github.com/BurntSushi/toml"
 	"github.com/mozillazg/request"
+	"github.com/spf13/viper"
 )
 
 // Toggl base url
@@ -19,28 +18,23 @@ const (
 	togglTimeForm = "2006-01-02T15:04:05-07:00"
 )
 
-// TogglConfig ...
-type TogglConfig struct {
-	APIToken    string `toml:"api_token"`
-	WorkspaceID string `toml:"workspace_id"`
-}
-
 // Toggl ...It is main function
 func Toggl() {
-	var config Config
 
-	configFile, _ := filepath.Abs("./config.tml")
-
-	// 1. read config.toml
-	_, err := toml.DecodeFile(configFile, &config)
+	// name of config file (without extension)
+	viper.SetConfigName("config")
+	// call multiple times to add many search paths
+	viper.AddConfigPath("$GOPATH/src/github.com/sotayamashita/report")
+	// Find and read the config file
+	err := viper.ReadInConfig()
 	if err != nil {
-		panic(err)
+		panic(fmt.Errorf("Fatal error config file: %s \n", err))
 	}
 
 	// 2. fetch data based on config.toml
 	client := new(http.Client)
 	req := request.NewRequest(client)
-	req.BasicAuth = request.BasicAuth{config.Toggl.APIToken, "api_token"}
+	req.BasicAuth = request.BasicAuth{viper.GetString("toggl.api_token"), "api_token"}
 	resp, err := req.Get(urlBuilder())
 	if err != nil {
 		log.Fatal(err.Error())
@@ -92,11 +86,6 @@ func meridiemTime(date interface{}) string {
 
 // TODO: methodize like URL
 func urlBuilder() *url.URL {
-	var config Config
-	_, err := toml.DecodeFile("config.tml", &config)
-	if err != nil {
-		panic(err)
-	}
 
 	u, err := url.Parse(BaseURL)
 	if err != nil {
@@ -105,7 +94,7 @@ func urlBuilder() *url.URL {
 
 	q := u.Query()
 	q.Add("user_agent", "report")
-	q.Add("workspace_id", config.Toggl.WorkspaceID)
+	q.Add("workspace_id", viper.GetString("toggl.workspace_id"))
 	q.Add("since", time.Now().Format("2006-01-02"))
 	u.RawQuery = q.Encode()
 
