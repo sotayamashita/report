@@ -51,7 +51,7 @@ Sat Jun 13 21:33:42 2015 +0900 c080ae4 Rename const togglTimeForm
 
 ## Configuration
 
-please create `config.tml`:
+please create `config.yml`:
 
 ### Toggl
 
