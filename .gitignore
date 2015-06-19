@@ -25,6 +25,7 @@ _testmain.go
 
 # configuration
 config.tml
+config.yml
 
 #
 report
