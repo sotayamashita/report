@@ -31,11 +31,6 @@ func assert(err error) {
 	}
 }
 
-// Config ...
-type Config struct {
-	Toggl TogglConfig
-}
-
 func doToggle(c *cli.Context) {
 	Toggl()
 }
