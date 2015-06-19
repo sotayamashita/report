@@ -57,22 +57,21 @@ please create `config.yml`:
 
 In config file, `api_token` and `workspace_id` is taken from [toggl.com](https://www.toggl.com/) and [Toggl API Documentation](https://github.com/toggl/toggl_api_docs#api-token) is more detail.
 
-```
-[toggl]
-api_token = "<your api token>"
-workspace_id = "<your workspace_id>"
+```yaml
+toggl:
+  api_token: "<your api token>"
+  workspace_id: "<your workspace_id>"
 ```
 
 ### Git
 
 In config file, each item should be a git repository (or any of the parent directories). It means that each directory has `.git/`.
 
-```
-[git]
-repositories = [
-  "~$GOPATH/src/github.com/sotayamashita/report",
-  "~$GOPATH/src/github.com/sotayamashita/coffee"
-]
+```yaml
+git:
+repositories:
+ - "~$GOPATH/src/github.com/sotayamashita/report",
+ - "~$GOPATH/src/github.com/sotayamashita/coffee"
 ```
 
 ## Installation
